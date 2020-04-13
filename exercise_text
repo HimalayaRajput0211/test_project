@@ -1,0 +1,108 @@
+2 -> command: cd Desktop/exercise_3/project1
+
+3 -> command: git checkout -b staging
+     Result:  Switched to a new branch 'staging'
+
+4 -> command: vi test1
+5 -> command: git add .    
+              git commit -m "initial commit"
+              git remote add origin https://github.com/HimalayaRajput0211/test_project.git
+              git push origin staging     
+     Result: Enumerating objects: 3, done.
+		Counting objects: 100% (3/3), done.
+		Writing objects: 100% (3/3), 233 bytes | 233.00 KiB/s, done.
+		Total 3 (delta 0), reused 0 (delta 0)
+		To https://github.com/HimalayaRajput0211/test_project.git
+		 * [new branch]      staging -> staging
+
+6 -> command: cd Desktop/exercise_3/project2
+7 -> command: git clone https://github.com/HimalayaRajput0211/test_project.git
+8 -> command: cd test-project
+10 -> command: git commit -a -m "second commit"
+      Result:  [staging d2a2312] second commit
+		 1 file changed, 1 insertion(+), 1 deletion(-)
+      Command: git push origin staging
+      Result:  Enumerating objects: 5, done.
+		Counting objects: 100% (5/5), done.
+		Writing objects: 100% (3/3), 264 bytes | 264.00 KiB/s, done.
+		Total 3 (delta 0), reused 0 (delta 0)
+		To https://github.com/HimalayaRajput0211/test_project.git
+		   889a915..d2a2312  staging -> staging
+11 -> command: cd Desktop/exercise_3/project1
+14 -> command: git commit -a -m "third commit"
+      Result: [staging 14029d9] third commit
+		 1 file changed, 1 insertion(+), 1 deletion(-) 
+      Command: git push origin staging
+      This upload command will be rejected because we update the remote repository from another project and those change are not synced with the current project.
+      so we have to first download the changes and then upload the new changes
+15 -> command: git checkout -b master
+      Result:  Switched to a new branch 'master'
+16 -> command: git merge staging 
+17 -> command: git checkout -b testing 
+      result:  Switched to a new branch 'testing'
+18 -> command: vi test1
+             : git commit -a -m "changed alphabet to A" 
+      Result: [testing fb67c3f] changed alphabet to A
+ 		1 file changed, 1 insertion(+), 1 deletion(-)
+20 -> command: git push origin testing
+      Result: Enumerating objects: 26, done.
+		Counting objects: 100% (26/26), done.
+		Delta compression using up to 8 threads
+		Compressing objects: 100% (8/8), done.
+		Writing objects: 100% (22/22), 1.83 KiB | 934.00 KiB/s, done.
+		Total 22 (delta 1), reused 0 (delta 0)
+		remote: Resolving deltas: 100% (1/1), done.
+		remote: 
+		remote: Create a pull request for 'testing' on GitHub by visiting:
+		remote:      https://github.com/HimalayaRajput0211/test_project/pull/new/testing
+		remote: 
+		To https://github.com/HimalayaRajput0211/test_project.git
+ 		* [new branch]      testing -> testing
+	
+
+21 -> command: git checkout master
+      Result: Switched to branch 'master'
+22 -> command: vi test1
+               git commit -a -m "changed number to 1"  
+      Result: [master f3fcb51] changed number to 1
+		 1 file changed, 1 insertion(+), 1 deletion(-)
+24 ->  git push origin master
+25 -> command: git rebase testing
+      Result:   First, rewinding head to replay your work on top of it...
+		Applying: changed number to 1
+		Using index info to reconstruct a base tree...
+		M	test1
+		Falling back to patching base and 3-way merge...
+		Auto-merging test1
+		CONFLICT (content): Merge conflict in test1
+		error: Failed to merge in the changes.
+		Patch failed at 0001 changed number to 1
+		hint: Use 'git am --show-current-patch' to see the failed patch
+		Resolve all conflicts manually, mark them as resolved with
+		"git add/rm <conflicted_files>", then run "git rebase --continue".
+		You can instead skip this commit: run "git rebase --skip".
+		To abort and get back to the state before "git rebase", run "git rebase --abort		
+      Command: vi test1
+               git add .        
+  	       git rebase --continue
+      Result:   Applying: changed number to 1
+		Applying: changed number to 2
+		Applying: changed number to 3
+		Applying: changed number to 4
+		Applying: changed number to 5
+		Applying: changed number to 6
+		Applying: changed number to 7
+26 -> command:  cd Desktop/exercise_3/project2
+27 -> command:  git fetch origin testing
+28 -> command:  git checkout -b master
+      Result:  Switched to a new branch 'master'
+29 -> command: git merge origin/testing
+      Result:  Updating d2a2312..99cb809
+	       Fast-forward
+	       test1 | 2 +-
+	       1 file changed, 1 insertion(+), 1 deletion(-)
+30 -> master is a local barnch, that is merged with the remote testing branch for project2
+      And testing is only a remote branch for project2
+
+		
+
